@@ -1,0 +1,65 @@
+<div class="title-container">
+  <h4 mat-dialog-title class="title">{{ isEditMode ? 'Editar Proveedor' : 'Agregar Proveedor' }}</h4>
+</div>
+<div mat-dialog-content class="form-container">
+  <form [formGroup]="proveedorForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo de Identificación</mat-label>
+        <mat-select formControlName="tipoIdentificacion" required>
+          <mat-option value="NIT">NIT</mat-option>
+          <mat-option value="CEDULA DE CIUDADANIA">CEDULA DE CIUDADANIA</mat-option>
+          <mat-option value="CEDULA DE EXTRANJERIA">CEDULA DE EXTRANJERIA</mat-option>
+        </mat-select>
+        <mat-error *ngIf="proveedorForm.controls['tipoIdentificacion'].hasError('required')">Tipo de Identificación es
+          requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Identificación</mat-label>
+        <input matInput formControlName="identificacion" required maxlength="20" pattern="[0-9]*" (keypress)="onlyNumbers($event)">
+        <mat-error *ngIf="proveedorForm.controls['identificacion'].hasError('required')">Identificación es requerida</mat-error>
+        <mat-error *ngIf="proveedorForm.controls['identificacion'].hasError('maxlength')">Máximo 20 caracteres</mat-error>
+        <mat-error *ngIf="proveedorForm.controls['identificacion'].hasError('pattern')">Solo se permiten números</mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Razón Social</mat-label>
+      <input matInput formControlName="razonSocial" required maxlength="100">
+      <mat-error *ngIf="proveedorForm.controls['razonSocial'].hasError('required')">Razón Social es
+        requerida</mat-error>
+      <mat-error *ngIf="proveedorForm.controls['razonSocial'].hasError('maxlength')">Máximo 100 caracteres</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Dirección</mat-label>
+      <input matInput formControlName="direccion" maxlength="200">
+      <mat-error *ngIf="proveedorForm.controls['direccion'].hasError('required')">Dirección es requerida</mat-error>
+      <mat-error *ngIf="proveedorForm.controls['direccion'].hasError('maxlength')">Máximo 200 caracteres</mat-error>
+    </mat-form-field>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre de Contacto</mat-label>
+        <input matInput formControlName="nombreContacto" maxlength="100">
+        <mat-error *ngIf="proveedorForm.controls['nombreContacto'].hasError('required')">Nombre de contacto es requerido</mat-error>
+        <mat-error *ngIf="proveedorForm.controls['nombreContacto'].hasError('maxlength')">Máximo 100
+          caracteres</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Celular de Contacto</mat-label>
+        <input matInput formControlName="celularContacto" maxlength="10" pattern="[0-9]*" (keypress)="onlyNumbers($event)">
+        <mat-error *ngIf="proveedorForm.controls['celularContacto'].hasError('required')">Celular de contacto es requerido</mat-error>
+        <mat-error *ngIf="proveedorForm.controls['celularContacto'].hasError('maxlength')">Máximo 10 caracteres</mat-error>
+        <mat-error *ngIf="proveedorForm.controls['celularContacto'].hasError('pattern')">Solo se permiten números</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions class="form-actions">
+      <button mat-button (click)="onNoClick()" class="cancel-button">Cancelar</button>
+      <button mat-raised-button color="primary" type="submit">{{ isEditMode ? 'Actualizar' : 'Crear' }}</button>
+    </div>
+  </form>
+</div>

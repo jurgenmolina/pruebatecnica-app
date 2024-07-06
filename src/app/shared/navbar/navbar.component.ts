@@ -6,7 +6,7 @@ import { NgClass, NgIf } from '@angular/common';
 import { User } from '../../model/user';
 import { UserService } from '../../services/user/user.service';
 import { AuthService } from '../../services/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { Observable, map, shareReplay } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -15,7 +15,7 @@ import { MatDividerModule } from '@angular/material/divider';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, NgClass, NgIf, MatMenuModule, MatDividerModule],
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, NgClass, NgIf, MatMenuModule, MatDividerModule, RouterModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })

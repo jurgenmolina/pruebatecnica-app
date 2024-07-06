@@ -1,9 +1,9 @@
 <mat-toolbar class="navbar" [ngClass]="{'scrolled': isScrolled}">
-  <a mat-button href="#" class="logo">Prueba Técnica</a>
+  <a mat-button routerLink="/home" class="logo">Prueba Técnica</a>
   <span class="spacer"></span>
   <div class="nav-links" *ngIf="userLoginOn">
-    <a mat-button href="#">productos</a>
-    <a mat-button href="#">proveedores</a>
+    <a mat-button routerLink="/admin/productos" routerLinkActive="active">productos</a>
+    <a mat-button routerLink="/admin/proveedores" routerLinkActive="active">proveedores</a>
     <a mat-button href="#" class="sale">recepción</a>
   </div>
   <span class="spacer"></span>

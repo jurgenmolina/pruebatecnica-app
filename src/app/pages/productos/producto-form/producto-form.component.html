@@ -1,0 +1,52 @@
+<div class="title-container">
+  <h4 mat-dialog-title class="title">{{ isEditMode ? 'Editar Producto' : 'Agregar Producto' }}</h4>
+</div>
+<div mat-dialog-content class="form-container">
+  <form [formGroup]="productoForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="codigo" required maxlength="20">
+        <mat-error *ngIf="productoForm.controls['codigo'].hasError('required')">Código es requerido</mat-error>
+        <mat-error *ngIf="productoForm.controls['codigo'].hasError('maxlength')">Máximo 20 caracteres</mat-error>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" required maxlength="100">
+        <mat-error *ngIf="productoForm.controls['nombre'].hasError('required')">Nombre es requerido</mat-error>
+        <mat-error *ngIf="productoForm.controls['nombre'].hasError('maxlength')">Máximo 100 caracteres</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Estado</mat-label>
+        <mat-select formControlName="estado" required>
+          <mat-option value="ACTIVO">ACTIVO</mat-option>
+          <mat-option value="INACTIVO">INACTIVO</mat-option>
+        </mat-select>
+        <mat-error *ngIf="productoForm.controls['estado'].hasError('required')">Estado es requerido</mat-error>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre del Laboratorio</mat-label>
+        <input matInput formControlName="nombreLaboratorio" required maxlength="100">
+        <mat-error *ngIf="productoForm.controls['nombreLaboratorio'].hasError('required')">Nombre del Laboratorio es requerido</mat-error>
+        <mat-error *ngIf="productoForm.controls['nombreLaboratorio'].hasError('maxlength')">Máximo 100 caracteres</mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="descripcion" required maxlength="200" rows="4"></textarea>
+      <mat-error *ngIf="productoForm.controls['descripcion'].hasError('required')">La Descripción es requerida</mat-error>
+      <mat-error *ngIf="productoForm.controls['descripcion'].hasError('maxlength')">Máximo 200 caracteres</mat-error>
+    </mat-form-field>
+    
+    <div mat-dialog-actions class="form-actions">
+      <button mat-button (click)="onNoClick()" class="cancel-button">Cancelar</button>
+      <button mat-raised-button color="primary" type="submit">{{ isEditMode ? 'Actualizar' : 'Crear' }}</button>
+    </div>
+  </form>
+</div>

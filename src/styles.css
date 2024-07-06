@@ -26,34 +26,3 @@ app-root {
 router-outlet {
   flex: 1;
 }
-
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #1a1a1a;
-  color: white;
-  padding: 1rem;
-  width: 100%;
-}
-
-.footer-left a {
-  color: white;
-  text-decoration: none;
-  margin-right: 1rem;
-  font-size: 0.9rem;
-  font-family: 'Playfair Display', serif;
-}
-
-.footer-left a:hover {
-  color: #ff9800;
-}
-
-.footer-right {
-  font-size: 0.9rem;
-  font-family: 'Roboto', sans-serif;
-}
-
-.spacer {
-  flex: 1 1 auto;
-}

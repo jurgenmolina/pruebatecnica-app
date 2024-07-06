@@ -1,7 +1,7 @@
 :host {
   display: block;
   height: 100vh;
-}
+} 
 
 .login-container {
   display: flex;
@@ -10,8 +10,8 @@
   height: 100vh;
   background-color: #000000;
   position: relative;
-  top: -100px; /* Ajusta este valor según sea necesario */
-  z-index: 10; /* Asegura que esté por encima del nav */
+  top: -100px;
+  z-index: 10; 
 }
 
 /* Card de login */
@@ -19,11 +19,8 @@
   width: 400px;
   border-radius: 10px;
   overflow: hidden;
-  background-color: rgba(255, 255, 255, 0.9); /* Añade un poco de transparencia */
+  background-color: rgba(255, 255, 255, 0.9); 
 }
-
-/* El resto de los estilos permanecen iguales */
-/* ... */
 
 /* Sección de formulario */
 .login-content {
@@ -171,4 +168,10 @@
 .policy-link .link-secondary-custom:hover {
   text-decoration: underline;
   color: #272622;
+}
+
+@media screen and (max-width: 750px) {
+  .login-container {
+    height: 150vh;
+  }
 }

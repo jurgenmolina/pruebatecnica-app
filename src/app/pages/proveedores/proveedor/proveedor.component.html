@@ -1,0 +1,73 @@
+<div class="proveedores-container">
+    <mat-card class="proveedores-card">
+      <mat-card-content class="proveedores-content">
+        <div class="header-container">
+          <h2 class="title-text">Proveedores</h2>
+          <button mat-raised-button color="primary" (click)="openDialog()" class="add-button">
+            <mat-icon>add</mat-icon> Agregar Proveedor
+          </button>
+        </div>
+  
+        <mat-form-field class="search-field">
+          <mat-label>Buscar proveedor</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ej. ABC Company" #input>
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+  
+        <div class="table-container">
+          <table mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="tipoIdentificacion">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo ID </th>
+              <td mat-cell *matCellDef="let element"> {{element.tipoIdentificacion}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="identificacion">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Identificación </th>
+              <td mat-cell *matCellDef="let element"> {{element.identificacion}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="razonSocial">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Razón Social </th>
+              <td mat-cell *matCellDef="let element"> {{element.razonSocial}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="direccion">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </th>
+              <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="nombreContacto">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Contacto </th>
+              <td mat-cell *matCellDef="let element"> {{element.nombreContacto}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="celularContacto">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Celular Contacto </th>
+              <td mat-cell *matCellDef="let element"> {{element.celularContacto}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="acciones">
+              <th mat-header-cell *matHeaderCellDef> Acciones </th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="primary" (click)="openDialog(element)" matTooltip="Editar">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="confirmDelete(element.id)" matTooltip="Eliminar">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="7">No se encontraron proveedores que coincidan con "{{input.value}}"</td>
+            </tr>
+          </table>
+        </div>
+  
+        <mat-paginator [length]="totalProveedores" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </mat-card-content>
+    </mat-card>
+  </div>
