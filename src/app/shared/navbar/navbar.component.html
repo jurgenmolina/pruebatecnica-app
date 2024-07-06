@@ -1,0 +1,37 @@
+<mat-toolbar class="navbar" [ngClass]="{'scrolled': isScrolled}">
+  <a mat-button href="#" class="logo">Prueba Técnica</a>
+  <span class="spacer"></span>
+  <div class="nav-links" *ngIf="userLoginOn">
+    <a mat-button href="#">productos</a>
+    <a mat-button href="#">proveedores</a>
+    <a mat-button href="#" class="sale">recepción</a>
+  </div>
+  <span class="spacer"></span>
+  <div class="icons">
+    <button mat-icon-button [matMenuTriggerFor]="userMenu">
+      <mat-icon>person_outline</mat-icon>
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item *ngIf="!userLoginOn" (click)="navigateToLogin()">
+        <mat-icon>login</mat-icon>
+        <span>Iniciar sesión</span>
+      </button>
+      <ng-container *ngIf="userLoginOn">
+        <button mat-menu-item disabled>
+          <span>{{ userData?.username }}</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Cerrar sesión</span>
+        </button>
+      </ng-container>
+    </mat-menu>
+    <button mat-icon-button>
+      <mat-icon>search</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>shopping_bag</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

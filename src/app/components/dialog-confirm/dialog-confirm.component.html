@@ -1,0 +1,11 @@
+<h1 mat-dialog-title class="dialog-title">
+  <mat-icon>warning</mat-icon>
+  ¿Eliminar?
+</h1>
+<div mat-dialog-content class="dialog-content">
+  <p>¿Estás seguro de que deseas eliminar este elemento?</p>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button (click)="onCancel()">No</button>
+  <button mat-raised-button color="warn" (click)="onConfirm()">Sí, Eliminar</button>
+</div>

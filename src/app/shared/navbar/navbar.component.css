@@ -1,0 +1,93 @@
+/* navbar.component.css */
+
+/* Estilos generales de la barra de navegación */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: transparent;
+  color: rgb(255, 255, 255);
+  transition: background-color 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.938);
+}
+
+.navbar.scrolled {
+  background-color: white;
+  color: black;
+  text-shadow: none;
+}
+
+/* Estilos de los enlaces y botones */
+.navbar a, 
+.navbar button {
+  color: inherit;
+  font-weight: normal;
+}
+
+.navbar.scrolled a, 
+.navbar.scrolled button {
+  color: black;
+}
+
+/* Estilos específicos para el enlace "sale" */
+.navbar .sale {
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+
+.navbar.scrolled .sale {
+  color: rgb(9, 170, 219);
+}
+
+/* Estilos del logo */
+.logo {
+  font-size: 18px;
+}
+
+/* Estilos de los enlaces de navegación */
+.nav-links {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-links a {
+  text-transform: capitalize;
+  font-size: 18px;
+}
+
+/* Espaciador */
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Estilos de los iconos */
+.icons {
+  display: flex;
+  gap: 8px;
+  margin-right: 20px;
+}
+
+mat-icon {
+  font-size: 28px;
+  height: 28px;
+  width: 28px;
+  line-height: 28px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.938);
+  transition: text-shadow 0.3s ease;
+}
+
+.navbar.scrolled mat-icon {
+  text-shadow: none;
+}
+
+/* Efectos hover para los iconos */
+.navbar button:hover mat-icon {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.navbar.scrolled button:hover mat-icon {
+  text-shadow: none;
+}

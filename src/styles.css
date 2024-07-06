@@ -1,4 +1,59 @@
-/* You can add global styles to this file, and also import other style files */
+body, html {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+}
+
+body {
+  padding-top: 64px;
+}
+
+html, body {
+  display: flex;
+  flex-direction: column;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+router-outlet {
+  flex: 1;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a1a1a;
+  color: white;
+  padding: 1rem;
+  width: 100%;
+}
+
+.footer-left a {
+  color: white;
+  text-decoration: none;
+  margin-right: 1rem;
+  font-size: 0.9rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.footer-left a:hover {
+  color: #ff9800;
+}
+
+.footer-right {
+  font-size: 0.9rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

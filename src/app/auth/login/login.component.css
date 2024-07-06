@@ -1,0 +1,174 @@
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #000000;
+  position: relative;
+  top: -100px; /* Ajusta este valor según sea necesario */
+  z-index: 10; /* Asegura que esté por encima del nav */
+}
+
+/* Card de login */
+.login-card {
+  width: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.9); /* Añade un poco de transparencia */
+}
+
+/* El resto de los estilos permanecen iguales */
+/* ... */
+
+/* Sección de formulario */
+.login-content {
+  padding: 20px;
+}
+
+/* Encabezado del formulario */
+.login-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.welcome-text {
+  font-weight: bold;
+  color: #2e2d2a;
+  font-size: 24px;
+}
+
+/* Campos de formulario */
+.custom-input-container {
+  position: relative;
+  margin-bottom: 15px;
+  width: 100%; 
+}
+
+.custom-input-container input {
+  width: 100%;
+  padding: 10px 40px 10px 15px; 
+  border: none;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  font-size: 16px;
+}
+
+.custom-input-container input::placeholder {
+  color: #888;
+}
+
+.custom-input-container .input-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+.custom-input-container .input-icon.clickable {
+  cursor: pointer;
+}
+
+.custom-input-container.has-error {
+  margin-bottom: 30px; 
+}
+
+.error-message {
+  position: absolute;
+  bottom: -20px; 
+  left: 0;
+  width: 100%;
+  color: #f44336;
+  font-size: 14px;
+}
+
+/* Botón de inicio de sesión */
+.login-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.login-actions button {
+  width: 100%;
+  font-size: 16px;
+  height: 40px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.blue-button {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.blue-button:hover {
+  background-color: #36373d;
+}
+
+/* Enlace de contraseña olvidada */
+.forgot-password {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.forgot-password .link-secondary-custom {
+  color: #272622;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.forgot-password .link-secondary-custom:hover {
+  text-decoration: underline;
+  color: #272622;
+}
+
+/* Iconos google y microsoft svg */
+.login-options {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.login-option {
+  margin: 0 10px;
+}
+
+.login-option .mat-icon {
+  width: 24px;
+  height: 24px;
+  color: #000000; 
+}
+
+/* Company logo */
+.company-logo {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.company-logo img {
+  width: 60px;
+  height: auto;
+}
+
+/* Policy link */
+.policy-link {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.policy-link .link-secondary-custom {
+  color: #272622;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.policy-link .link-secondary-custom:hover {
+  text-decoration: underline;
+  color: #272622;
+}
