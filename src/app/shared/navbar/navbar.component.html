@@ -4,7 +4,7 @@
   <div class="nav-links" *ngIf="userLoginOn">
     <a mat-button routerLink="/admin/productos" routerLinkActive="active">productos</a>
     <a mat-button routerLink="/admin/proveedores" routerLinkActive="active">proveedores</a>
-    <a mat-button href="#" class="sale">recepción</a>
+    <a mat-button routerLink="/admin/recepciones" routerLinkActive="active" class="sale">recepción</a>
   </div>
   <span class="spacer"></span>
   <div class="icons">
@@ -29,9 +29,6 @@
     </mat-menu>
     <button mat-icon-button>
       <mat-icon>search</mat-icon>
-    </button>
-    <button mat-icon-button>
-      <mat-icon>shopping_bag</mat-icon>
     </button>
   </div>
 </mat-toolbar>

@@ -59,11 +59,11 @@ export class LoginComponent implements OnInit {
   private registerCustomIcons() {
     this.matIconRegistry.addSvgIcon(
       'google',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/icons/google.svg')
+      this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/icons/google.svg')
     );
     this.matIconRegistry.addSvgIcon(
-      'microsoft',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../../assets/icons/microsoft.svg')
+      'facebook',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/icons/facebook.svg')
     );
   }
 

@@ -1,0 +1,88 @@
+<div class="recepciones-container">
+    <mat-card class="recepciones-card">
+      <mat-card-content class="recepciones-content">
+        <div class="header-container">
+          <h2 class="title-text">Recepciones de Productos por Proveedor</h2>
+          <button mat-raised-button color="primary" (click)="openDialog()" class="add-button">
+            <mat-icon>add</mat-icon> Agregar Recepción
+          </button>
+        </div>
+  
+        <mat-form-field class="search-field">
+          <mat-label>Buscar recepción</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Número de factura" #input>
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+  
+        <div class="table-container">
+          <table mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="fechaHoraRecepcion">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha y Hora </th>
+              <td mat-cell *matCellDef="let element"> {{formatDate(element.fechaHoraRecepcion)}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="producto">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Código Producto </th>
+              <td mat-cell *matCellDef="let element"> {{element.producto.codigo}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="proveedor">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Identificación Proveedor </th>
+              <td mat-cell *matCellDef="let element"> {{element.proveedor.identificacion}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="numeroFactura">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Número Factura </th>
+              <td mat-cell *matCellDef="let element"> {{element.numeroFactura}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="cantidad">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
+              <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="lote">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Lote </th>
+              <td mat-cell *matCellDef="let element"> {{element.lote}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="registroInvima">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Registro INVIMA </th>
+              <td mat-cell *matCellDef="let element"> {{element.registroInvima}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="fechaVencimiento">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Vencimiento </th>
+              <td mat-cell *matCellDef="let element"> {{formatDate(element.fechaVencimiento)}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="estadoPresentacion">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado Presentación </th>
+              <td mat-cell *matCellDef="let element"> {{element.estadoPresentacion}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="acciones">
+              <th mat-header-cell *matHeaderCellDef> Acciones </th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="primary" (click)="openDialog(element)" matTooltip="Editar">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="confirmDelete(element.id)" matTooltip="Eliminar">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="10">No se encontraron recepciones que coincidan con "{{input.value}}"</td>
+            </tr>
+          </table>
+        </div>
+  
+        <mat-paginator [length]="totalRecepciones" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </mat-card-content>
+    </mat-card>
+  </div>

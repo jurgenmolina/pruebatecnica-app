@@ -4,6 +4,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { authGuard } from './guards/auth.guard';
 import { ProductoComponent } from './pages/productos/producto/producto.component';
 import { ProveedorComponent } from './pages/proveedores/proveedor/proveedor.component';
+import { RecepcionComponent } from './pages/recepciones/recepcion/recepcion.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,7 +16,7 @@ export const routes: Routes = [
     children: [
       { path: 'productos', component: ProductoComponent },
       { path: 'proveedores', component: ProveedorComponent },
-      // Aquí puedes agregar más rutas protegidas en el futuro
+      { path: 'recepciones', component: RecepcionComponent },
     ]
   },
 ];

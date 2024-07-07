@@ -6,7 +6,7 @@
       </div>
       <form [formGroup]="loginForm">
         <div class="custom-input-container" [class.has-error]="username?.invalid && (username?.dirty || username?.touched)">
-          <input type="text" formControlName="username" required placeholder="Correo Electrónico o Usuario">
+          <input type="text" formControlName="username" required placeholder="Usuario">
           <mat-icon class="input-icon">person</mat-icon>
           <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="error-message">
             El usuario es obligatorio.
@@ -33,22 +33,22 @@
         </mat-error>
       </form>
       <div class="forgot-password">
-        <a href="#!" class="link-secondary-custom">¿Olvidaste tu contraseña?</a>
+        <a href="#!" class="link-secondary-custom">¿Olvidaste tu clave?</a>
       </div>
       <div class="login-options">
         <a href="#!" class="login-option">
           <mat-icon svgIcon="google"></mat-icon>
         </a>
         <a href="#!" class="login-option">
-          <mat-icon svgIcon="microsoft"></mat-icon>
+          <mat-icon svgIcon="facebook"></mat-icon>
         </a>
       </div>
       <div class="company-logo">
-        <img src="../../../favicon.ico" alt="Company Logo">
+        <img src="../../../assets/logo/farmacia.png" alt="Company Logo">
       </div>
       
       <div class="policy-link">
-        <a href="#!" class="link-secondary-custom">Política de Privacidad y Términos de Servicio</a>
+        <a href="#!" class="link-secondary-custom">Prueba Técnica</a>
       </div>
     </mat-card-content>
   </mat-card>
