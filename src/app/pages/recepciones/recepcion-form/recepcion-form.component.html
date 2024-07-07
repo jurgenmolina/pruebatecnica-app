@@ -91,6 +91,10 @@
     <mat-error *ngIf="proveedorNoEncontrado" class="custom-error">No se encontró el proveedor con la identificación
       especificada</mat-error>
 
+    <div *ngIf="errorMessage" class="custom-error">
+      {{ errorMessage }}
+    </div>
+
     <div mat-dialog-actions class="form-actions">
       <button mat-button (click)="onNoClick()" class="cancel-button">Cancelar</button>
       <button mat-raised-button color="primary" type="submit">{{ isEditMode ? 'Actualizar' : 'Crear' }}</button>

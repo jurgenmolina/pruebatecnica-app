@@ -41,6 +41,15 @@ mat-form-field {
   margin-right: 10px;
 }
 
+.error-message {
+  color: red;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #ffebee;
+  border: 1px solid #ffcdd2;
+  border-radius: 4px;
+}
+
 @media (max-width: 600px) {
   .form-container {
     margin: 10px;

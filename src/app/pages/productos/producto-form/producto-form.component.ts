@@ -28,6 +28,7 @@ import { DialogConfirmComponent } from '../../../components/dialog-confirm/dialo
 export class ProductoFormComponent {
   productoForm: FormGroup;
   isEditMode: boolean;
+  errorMessage: string = ''; 
 
   constructor(
     public dialogRef: MatDialogRef<ProductoFormComponent>,
@@ -42,7 +43,7 @@ export class ProductoFormComponent {
       id: [{ value: data.producto.id || '', disabled: true }],
       codigo: [data.producto.codigo || '', [Validators.required, Validators.maxLength(20)]],
       nombre: [data.producto.nombre || '', [Validators.required, Validators.maxLength(100)]],
-      descripcion: [data.producto.descripcion || '', [Validators.required, Validators.maxLength(200)]],
+      descripcion: [data.producto.descripcion || '', [Validators.maxLength(200)]],
       estado: [data.producto.estado || '', [Validators.required]],
       nombreLaboratorio: [data.producto.nombreLaboratorio || '', [Validators.required, Validators.maxLength(100)]],
     });
@@ -55,7 +56,6 @@ export class ProductoFormComponent {
   onSubmit(): void {
     if (this.productoForm.valid) {
       const productoRaw: Producto = this.productoForm.getRawValue();
-      
       const producto: Producto = {
         ...productoRaw,
         codigo: this.toUpperCase(productoRaw.codigo),
@@ -71,7 +71,10 @@ export class ProductoFormComponent {
             this.showConfirmDialog('ACTUALIZADO CON ÉXITO');
             this.dialogRef.close(true);
           },
-          error => console.error(error)
+          error => {
+            console.error(error);
+            this.errorMessage = 'Error al actualizar el producto. El código podría estar duplicado.';
+          }
         );
       } else {
         this.productoService.createProducto(producto).subscribe(
@@ -79,7 +82,10 @@ export class ProductoFormComponent {
             this.showConfirmDialog('GUARDADO CON ÉXITO');
             this.dialogRef.close(true);
           },
-          error => console.error(error)
+          error => {
+            console.error(error);
+            this.errorMessage = 'Error al crear el producto. El código podría estar duplicado.';
+          }
         );
       }
     }

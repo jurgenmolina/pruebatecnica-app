@@ -32,6 +32,7 @@ export class RecepcionFormComponent {
   isEditMode: boolean;
   productoNoEncontrado: boolean = false;
   proveedorNoEncontrado: boolean = false;
+  errorMessage: string = '';
 
   constructor(
     public dialogRef: MatDialogRef<RecepcionFormComponent>,
@@ -143,7 +144,10 @@ export class RecepcionFormComponent {
           this.showConfirmDialog('ACTUALIZADO CON ÉXITO');
           this.dialogRef.close(true);
         },
-        error => console.error(error)
+        error => {
+          console.error(error);
+          this.errorMessage = 'Error al actualizar la recepción. El número de la factura podría estar duplicado.';
+        }
       );
     } else {
       this.recepcionProductoService.createRecepcion(recepcion).subscribe(
@@ -151,7 +155,10 @@ export class RecepcionFormComponent {
           this.showConfirmDialog('GUARDADO CON ÉXITO');
           this.dialogRef.close(true);
         },
-        error => console.error(error)
+        error => {
+          console.error(error);
+          this.errorMessage = 'Error al crear la recepción. El número de la factura podría estar duplicado.';
+        }
       );
     }
   }

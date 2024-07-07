@@ -28,6 +28,7 @@ import { DialogConfirmComponent } from '../../../components/dialog-confirm/dialo
 export class ProveedorFormComponent {
   proveedorForm: FormGroup;
   isEditMode: boolean;
+  errorMessage: string = '';
 
   constructor(
     public dialogRef: MatDialogRef<ProveedorFormComponent>,
@@ -81,7 +82,10 @@ export class ProveedorFormComponent {
             this.showConfirmDialog('ACTUALIZADO CON ÉXITO');
             this.dialogRef.close(true);
           },
-          error => console.error(error)
+          error => {
+            console.error(error);
+            this.errorMessage = 'Error al actualizar el proveedor. La identificación podría estar duplicado.';
+          }
         );
       } else {
         this.proveedorService.createProveedor(proveedor).subscribe(
@@ -89,7 +93,10 @@ export class ProveedorFormComponent {
             this.showConfirmDialog('GUARDADO CON ÉXITO');
             this.dialogRef.close(true);
           },
-          error => console.error(error)
+          error => {
+            console.error(error);
+            this.errorMessage = 'Error al guardar el proveedor. La identificación podría estar duplicado.';
+          }
         );
       }
     }

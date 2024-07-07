@@ -57,6 +57,10 @@
       </mat-form-field>
     </div>
 
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
     <div mat-dialog-actions class="form-actions">
       <button mat-button (click)="onNoClick()" class="cancel-button">Cancelar</button>
       <button mat-raised-button color="primary" type="submit">{{ isEditMode ? 'Actualizar' : 'Crear' }}</button>

@@ -39,10 +39,13 @@
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Descripción</mat-label>
-      <textarea matInput formControlName="descripcion" required maxlength="200" rows="4"></textarea>
-      <mat-error *ngIf="productoForm.controls['descripcion'].hasError('required')">La Descripción es requerida</mat-error>
+      <textarea matInput formControlName="descripcion" maxlength="200" rows="4"></textarea>
       <mat-error *ngIf="productoForm.controls['descripcion'].hasError('maxlength')">Máximo 200 caracteres</mat-error>
     </mat-form-field>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
     
     <div mat-dialog-actions class="form-actions">
       <button mat-button (click)="onNoClick()" class="cancel-button">Cancelar</button>
