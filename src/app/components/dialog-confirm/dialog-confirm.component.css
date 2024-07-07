@@ -1,28 +1,28 @@
-.dialog-title {
-  display: flex;
-  justify-content: center;
-  border-bottom: 1px solid #ccc;
-  margin-top: 20px;
-  gap: 10px;
+.confirmation-dialog {
+  text-align: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.dialog-title mat-icon {
-  color: #fec832; /* Color amarillo para el icono de advertencia */
+h2 {
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
-.dialog-content {
-  text-align: center; /* Centrar el texto */
+.animation {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  border: 3px solid #3498db;
+  border-radius: 50%;
+  border-top-color: #f0f0f0;
+  animation: spin 1s ease-in-out infinite;
 }
 
-.dialog-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  border-top: 1px solid #ccc;
-  padding-top: 10px;
-  margin-top: 10px;
-}
-
-button {
-  min-width: 80px;
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }

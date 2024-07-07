@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Proveedor } from '../../../model/proveedor';
 import { ProveedorService } from '../../../services/proveedor/proveedor.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { DialogConfirmComponent } from '../../../components/dialog-confirm/dialog-confirm.component';
 
 @Component({
   selector: 'app-proveedor-form',
@@ -32,7 +33,8 @@ export class ProveedorFormComponent {
     public dialogRef: MatDialogRef<ProveedorFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { proveedor: Proveedor },
     private formBuilder: FormBuilder,
-    private proveedorService: ProveedorService
+    private proveedorService: ProveedorService,
+    private dialog: MatDialog
   ) {
     this.isEditMode = !!data.proveedor.id;
 
@@ -63,7 +65,6 @@ export class ProveedorFormComponent {
     if (this.proveedorForm.valid) {
       const proveedorRaw: Proveedor = this.proveedorForm.getRawValue();
       
-      // Convertir todos los campos de texto a mayúsculas
       const proveedor: Proveedor = {
         ...proveedorRaw,
         tipoIdentificacion: this.toUpperCase(proveedorRaw.tipoIdentificacion),
@@ -76,20 +77,36 @@ export class ProveedorFormComponent {
 
       if (this.isEditMode) {
         this.proveedorService.updateProveedor(proveedor.id!, proveedor).subscribe(
-          () => this.dialogRef.close(true),
+          () => {
+            this.showConfirmDialog('ACTUALIZADO CON ÉXITO');
+            this.dialogRef.close(true);
+          },
           error => console.error(error)
         );
       } else {
         this.proveedorService.createProveedor(proveedor).subscribe(
-          () => this.dialogRef.close(true),
+          () => {
+            this.showConfirmDialog('GUARDADO CON ÉXITO');
+            this.dialogRef.close(true);
+          },
           error => console.error(error)
         );
       }
     }
   }
 
-  // Método auxiliar para convertir a mayúsculas
   private toUpperCase(value: string): string {
     return value ? value.toUpperCase() : '';
+  }
+
+  private showConfirmDialog(message: string): void {
+    const dialogRef = this.dialog.open(DialogConfirmComponent, {
+      data: { message: message },
+      disableClose: true
+    });
+
+    setTimeout(() => {
+      dialogRef.close();
+    }, 1000);
   }
 }

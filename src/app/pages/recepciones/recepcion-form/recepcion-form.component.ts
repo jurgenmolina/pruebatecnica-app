@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { RecepcionProductoService } from '../../../services/recepcion/recepcion.service';
 import { RecepcionProducto } from '../../../model/recepcionProducto';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProductoService } from '../../../services/producto/producto.service';
 import { ProveedorService } from '../../../services/proveedor/proveedor.service';
+import { DialogConfirmComponent } from '../../../components/dialog-confirm/dialog-confirm.component';
 
 @Component({
   selector: 'app-recepcion-form',
@@ -29,6 +30,8 @@ import { ProveedorService } from '../../../services/proveedor/proveedor.service'
 export class RecepcionFormComponent {
   recepcionForm: FormGroup;
   isEditMode: boolean;
+  productoNoEncontrado: boolean = false;
+  proveedorNoEncontrado: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<RecepcionFormComponent>,
@@ -36,11 +39,11 @@ export class RecepcionFormComponent {
     private formBuilder: FormBuilder,
     private recepcionProductoService: RecepcionProductoService,
     private productoService: ProductoService,
-    private proveedorService: ProveedorService
+    private proveedorService: ProveedorService,
+    private dialog: MatDialog
   ) {
     this.isEditMode = !!data.recepcion.id;
-    console.log('Datos recibidos:', data.recepcion); 
-    
+
     this.recepcionForm = this.formBuilder.group({
       id: [{ value: data.recepcion.id || '', disabled: true }],
       fechaHoraRecepcion: [data.recepcion.fechaHoraRecepcion || new Date(), Validators.required],
@@ -86,26 +89,40 @@ export class RecepcionFormComponent {
   onSubmit(): void {
     if (this.recepcionForm.valid) {
       const formData = this.recepcionForm.value;
-
-      // Convertir campos de texto a mayúsculas
+      this.productoNoEncontrado = false;
+      this.proveedorNoEncontrado = false;
       formData.numeroFactura = this.toUpperCase(formData.numeroFactura);
       formData.lote = this.toUpperCase(formData.lote);
       formData.registroInvima = this.toUpperCase(formData.registroInvima);
       formData.estadoPresentacion = this.toUpperCase(formData.estadoPresentacion);
-
+  
       this.productoService.getProductoByCodigo(formData.codigoProducto).subscribe(
         producto => {
-          formData.producto = producto.id;
-
-          this.proveedorService.getProveedorPorIdentificacion(formData.identificacionProveedor).subscribe(
-            proveedor => {
-              formData.proveedor = proveedor.id;
-              this.saveOrUpdateRecepcion(formData);
-            },
-            error => console.error('Error al obtener proveedor:', error)
-          );
+          if (producto) {
+            formData.producto = producto.id;
+  
+            this.proveedorService.getProveedorPorIdentificacion(formData.identificacionProveedor).subscribe(
+              proveedor => {
+                if (proveedor) {
+                  formData.proveedor = proveedor.id;
+                  this.saveOrUpdateRecepcion(formData);
+                } else {
+                  this.proveedorNoEncontrado = true;
+                }
+              },
+              error => {
+                console.error('Error al obtener proveedor:', error);
+                this.proveedorNoEncontrado = true;
+              }
+            );
+          } else {
+            this.productoNoEncontrado = true;
+          }
         },
-        error => console.error('Error al obtener producto:', error)
+        error => {
+          console.error('Error al obtener producto:', error);
+          this.productoNoEncontrado = true;
+        }
       );
     }
   }
@@ -122,15 +139,32 @@ export class RecepcionFormComponent {
 
     if (this.isEditMode) {
       this.recepcionProductoService.updateRecepcion(this.data.recepcion.id!, recepcion).subscribe(
-        () => this.dialogRef.close(true),
+        () => {
+          this.showConfirmDialog('ACTUALIZADO CON ÉXITO');
+          this.dialogRef.close(true);
+        },
         error => console.error(error)
       );
     } else {
       this.recepcionProductoService.createRecepcion(recepcion).subscribe(
-        () => this.dialogRef.close(true),
+        () => {
+          this.showConfirmDialog('GUARDADO CON ÉXITO');
+          this.dialogRef.close(true);
+        },
         error => console.error(error)
       );
     }
+  }
+
+  private showConfirmDialog(message: string): void {
+    const dialogRef = this.dialog.open(DialogConfirmComponent, {
+      data: { message: message },
+      disableClose: true
+    });
+
+    setTimeout(() => {
+      dialogRef.close();
+    }, 1000);
   }
 
   private toUpperCase(value: string): string {

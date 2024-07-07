@@ -40,6 +40,14 @@
     border: 1px solid #ccc;
     margin-right: 10px;
   }
+
+  .custom-error {
+    color: #f44336;
+    font-size: 75%;
+    margin-top: -1em;
+    margin-bottom: 1em;
+    display: block;
+  }
   
   @media (max-width: 600px) {
     .form-container {

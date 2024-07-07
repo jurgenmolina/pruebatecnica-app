@@ -1,82 +1,99 @@
 <div class="title-container">
-    <h4 mat-dialog-title class="title">{{ isEditMode ? 'Editar Recepción de Producto' : 'Agregar Recepción de Producto' }}</h4>
-  </div>
-  <div mat-dialog-content class="form-container">
-    <form [formGroup]="recepcionForm" (ngSubmit)="onSubmit()">
-      <div class="form-row">
-        <mat-form-field appearance="outline">
-          <mat-label>Fecha y Hora de Recepción</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="fechaHoraRecepcion" required>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-          <mat-error *ngIf="recepcionForm.controls['fechaHoraRecepcion'].hasError('required')">Fecha y hora de recepción es requerida</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field appearance="outline">
-          <mat-label>Código Producto</mat-label>
-          <input matInput formControlName="codigoProducto" required>
-          <mat-error *ngIf="recepcionForm.controls['codigoProducto'].hasError('required')">Código de Producto es requerido</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form-row">
-        <mat-form-field appearance="outline">
-          <mat-label>Identificación Proveedor</mat-label>
-          <input matInput formControlName="identificacionProveedor" required>
-          <mat-error *ngIf="recepcionForm.controls['identificacionProveedor'].hasError('required')">Identificación de Proveedor es requerida</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field appearance="outline">
-          <mat-label>Número de Factura</mat-label>
-          <input matInput formControlName="numeroFactura" required maxlength="50">
-          <mat-error *ngIf="recepcionForm.controls['numeroFactura'].hasError('required')">Número de factura es requerido</mat-error>
-          <mat-error *ngIf="recepcionForm.controls['numeroFactura'].hasError('maxlength')">Máximo 50 caracteres</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form-row">
-        <mat-form-field appearance="outline">
-          <mat-label>Cantidad</mat-label>
-          <input matInput formControlName="cantidad" required type="number" min="1">
-          <mat-error *ngIf="recepcionForm.controls['cantidad'].hasError('required')">Cantidad es requerida</mat-error>
-          <mat-error *ngIf="recepcionForm.controls['cantidad'].hasError('min')">La cantidad debe ser mayor a 0</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field appearance="outline">
-          <mat-label>Lote</mat-label>
-          <input matInput formControlName="lote" required maxlength="50">
-          <mat-error *ngIf="recepcionForm.controls['lote'].hasError('required')">Lote es requerido</mat-error>
-          <mat-error *ngIf="recepcionForm.controls['lote'].hasError('maxlength')">Máximo 50 caracteres</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form-row">
-        <mat-form-field appearance="outline">
-          <mat-label>Registro INVIMA</mat-label>
-          <input matInput formControlName="registroInvima" required maxlength="50">
-          <mat-error *ngIf="recepcionForm.controls['registroInvima'].hasError('required')">Registro INVIMA es requerido</mat-error>
-          <mat-error *ngIf="recepcionForm.controls['registroInvima'].hasError('maxlength')">Máximo 50 caracteres</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field appearance="outline">
-          <mat-label>Fecha de Vencimiento</mat-label>
-          <input matInput [matDatepicker]="vencimientoPicker" formControlName="fechaVencimiento" required>
-          <mat-datepicker-toggle matSuffix [for]="vencimientoPicker"></mat-datepicker-toggle>
-          <mat-datepicker #vencimientoPicker></mat-datepicker>
-          <mat-error *ngIf="recepcionForm.controls['fechaVencimiento'].hasError('required')">Fecha de vencimiento es requerida</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Estado de Presentación</mat-label>
-        <input matInput formControlName="estadoPresentacion" required maxlength="200">
-        <mat-error *ngIf="recepcionForm.controls['estadoPresentacion'].hasError('required')">Estado de presentación es requerido</mat-error>
-        <mat-error *ngIf="recepcionForm.controls['estadoPresentacion'].hasError('maxlength')">Máximo 200 caracteres</mat-error>
+  <h4 mat-dialog-title class="title">{{ isEditMode ? 'Editar Recepción de Producto' : 'Agregar Recepción de Producto' }}
+  </h4>
+</div>
+<div mat-dialog-content class="form-container">
+  <form [formGroup]="recepcionForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha y Hora de Recepción</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fechaHoraRecepcion" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="recepcionForm.controls['fechaHoraRecepcion'].hasError('required')">Fecha y hora de recepción
+          es requerida</mat-error>
       </mat-form-field>
-  
-      <div mat-dialog-actions class="form-actions">
-        <button mat-button (click)="onNoClick()" class="cancel-button">Cancelar</button>
-        <button mat-raised-button color="primary" type="submit">{{ isEditMode ? 'Actualizar' : 'Crear' }}</button>
-      </div>
-    </form>
-  </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Código Producto</mat-label>
+        <input matInput formControlName="codigoProducto" required>
+        <mat-error *ngIf="recepcionForm.controls['codigoProducto'].hasError('required')">Código de Producto es
+          requerido</mat-error>
+      </mat-form-field>
+
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Identificación Proveedor</mat-label>
+        <input matInput formControlName="identificacionProveedor" required>
+        <mat-error *ngIf="recepcionForm.controls['identificacionProveedor'].hasError('required')">Identificación de
+          Proveedor es requerida</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Número de Factura</mat-label>
+        <input matInput formControlName="numeroFactura" required maxlength="50">
+        <mat-error *ngIf="recepcionForm.controls['numeroFactura'].hasError('required')">Número de factura es
+          requerido</mat-error>
+        <mat-error *ngIf="recepcionForm.controls['numeroFactura'].hasError('maxlength')">Máximo 50
+          caracteres</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Cantidad</mat-label>
+        <input matInput formControlName="cantidad" required type="number" min="1">
+        <mat-error *ngIf="recepcionForm.controls['cantidad'].hasError('required')">Cantidad es requerida</mat-error>
+        <mat-error *ngIf="recepcionForm.controls['cantidad'].hasError('min')">La cantidad debe ser mayor a 0</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Lote</mat-label>
+        <input matInput formControlName="lote" required maxlength="50">
+        <mat-error *ngIf="recepcionForm.controls['lote'].hasError('required')">Lote es requerido</mat-error>
+        <mat-error *ngIf="recepcionForm.controls['lote'].hasError('maxlength')">Máximo 50 caracteres</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Registro INVIMA</mat-label>
+        <input matInput formControlName="registroInvima" required maxlength="50">
+        <mat-error *ngIf="recepcionForm.controls['registroInvima'].hasError('required')">Registro INVIMA es
+          requerido</mat-error>
+        <mat-error *ngIf="recepcionForm.controls['registroInvima'].hasError('maxlength')">Máximo 50
+          caracteres</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha de Vencimiento</mat-label>
+        <input matInput [matDatepicker]="vencimientoPicker" formControlName="fechaVencimiento" required>
+        <mat-datepicker-toggle matSuffix [for]="vencimientoPicker"></mat-datepicker-toggle>
+        <mat-datepicker #vencimientoPicker></mat-datepicker>
+        <mat-error *ngIf="recepcionForm.controls['fechaVencimiento'].hasError('required')">Fecha de vencimiento es
+          requerida</mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Estado de Presentación</mat-label>
+      <input matInput formControlName="estadoPresentacion" required maxlength="200">
+      <mat-error *ngIf="recepcionForm.controls['estadoPresentacion'].hasError('required')">Estado de presentación es
+        requerido</mat-error>
+      <mat-error *ngIf="recepcionForm.controls['estadoPresentacion'].hasError('maxlength')">Máximo 200
+        caracteres</mat-error>
+    </mat-form-field>
+
+    <mat-error *ngIf="productoNoEncontrado" class="custom-error">No se encontró el producto con el código
+      especificado</mat-error>
+    <mat-error *ngIf="proveedorNoEncontrado" class="custom-error">No se encontró el proveedor con la identificación
+      especificada</mat-error>
+
+    <div mat-dialog-actions class="form-actions">
+      <button mat-button (click)="onNoClick()" class="cancel-button">Cancelar</button>
+      <button mat-raised-button color="primary" type="submit">{{ isEditMode ? 'Actualizar' : 'Crear' }}</button>
+    </div>
+  </form>
+</div>

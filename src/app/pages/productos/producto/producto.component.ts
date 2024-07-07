@@ -5,7 +5,7 @@ import { Producto } from '../../../model/producto';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { DialogConfirmComponent } from '../../../components/dialog-confirm/dialog-confirm.component';
+import { DialogDeleteConfirmComponent } from '../../../components/dialog-delete-confirm/dialog-delete-confirm.component';
 import { ProductoFormComponent } from '../producto-form/producto-form.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -91,7 +91,7 @@ export class ProductoComponent implements OnInit {
   }
 
   confirmDelete(id: number): void {
-    const dialogRef = this.dialog.open(DialogConfirmComponent, {
+    const dialogRef = this.dialog.open(DialogDeleteConfirmComponent, {
       width: '500px'
     });
 

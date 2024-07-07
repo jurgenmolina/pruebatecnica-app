@@ -11,7 +11,7 @@ describe('DialogConfirmComponent', () => {
       imports: [DialogConfirmComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(DialogConfirmComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

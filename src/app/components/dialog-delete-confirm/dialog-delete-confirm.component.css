@@ -1,0 +1,29 @@
+.dialog-title {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #ccc;
+    margin-top: 20px;
+    gap: 10px;
+  }
+  
+  .dialog-title mat-icon {
+    color: #fec832; /* Color amarillo para el icono de advertencia */
+  }
+  
+  .dialog-content {
+    text-align: center; /* Centrar el texto */
+  }
+  
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    margin-top: 10px;
+  }
+  
+  button {
+    min-width: 80px;
+  }
+  

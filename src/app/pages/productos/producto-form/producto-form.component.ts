@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Producto } from '../../../model/producto';
 import { ProductoService } from '../../../services/producto/producto.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { DialogConfirmComponent } from '../../../components/dialog-confirm/dialog-confirm.component';
 
 @Component({
   selector: 'app-producto-form',
@@ -32,7 +33,8 @@ export class ProductoFormComponent {
     public dialogRef: MatDialogRef<ProductoFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { producto: Producto },
     private formBuilder: FormBuilder,
-    private productoService: ProductoService
+    private productoService: ProductoService,
+    private dialog: MatDialog
   ) {
     this.isEditMode = !!data.producto.id;
 
@@ -54,7 +56,6 @@ export class ProductoFormComponent {
     if (this.productoForm.valid) {
       const productoRaw: Producto = this.productoForm.getRawValue();
       
-      // Convertir todos los campos de texto a mayúsculas
       const producto: Producto = {
         ...productoRaw,
         codigo: this.toUpperCase(productoRaw.codigo),
@@ -66,20 +67,36 @@ export class ProductoFormComponent {
 
       if (this.isEditMode) {
         this.productoService.updateProducto(producto.id!, producto).subscribe(
-          () => this.dialogRef.close(true),
+          () => {
+            this.showConfirmDialog('ACTUALIZADO CON ÉXITO');
+            this.dialogRef.close(true);
+          },
           error => console.error(error)
         );
       } else {
         this.productoService.createProducto(producto).subscribe(
-          () => this.dialogRef.close(true),
+          () => {
+            this.showConfirmDialog('GUARDADO CON ÉXITO');
+            this.dialogRef.close(true);
+          },
           error => console.error(error)
         );
       }
     }
   }
 
-  // Método auxiliar para convertir a mayúsculas
   private toUpperCase(value: string): string {
     return value ? value.toUpperCase() : '';
+  }
+
+  private showConfirmDialog(message: string): void {
+    const dialogRef = this.dialog.open(DialogConfirmComponent, {
+      data: { message: message },
+      disableClose: true
+    });
+
+    setTimeout(() => {
+      dialogRef.close();
+    }, 1000);
   }
 }
