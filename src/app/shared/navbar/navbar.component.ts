@@ -67,13 +67,10 @@ export class NavbarComponent implements OnInit {
   }
 
   private handleUserDataError(error: any): void {
-    // Aquí puedes personalizar el manejo de errores según tus necesidades
     if (error.status === 401) {
-      // Token inválido o expirado
       alert("La sesión ha caducado. Por favor, inicie sesión nuevamente.");
       this.logout();
     } else {
-      // Otro tipo de error
       alert("Ha ocurrido un error al obtener los datos del usuario. Por favor, intente nuevamente.");
     }
   }
@@ -92,6 +89,12 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/iniciar-sesion']);
   }
 
- 
+  navigateToRegister() {
+    this.router.navigate(['/registro']);
+  }
+
+  navigateToPerfil() {
+    this.router.navigate(['/admin/perfil']);
+  }
 
 }

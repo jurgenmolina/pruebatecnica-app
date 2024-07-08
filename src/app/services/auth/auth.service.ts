@@ -4,6 +4,7 @@ import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { LoginRequest } from '../../model/loginRequest';
 import { environment } from '../../environments/environment';
+import { RegisterRequest } from '../../model/registerRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class AuthService {
   }
 
   login(credentials: LoginRequest): Observable<any> {
-    return this.http.post<any>(`${environment.urlHost}api/auth/login`, credentials).pipe(
+    return this.http.post<any>(`${environment.urlHost}auth/login`, credentials).pipe(
       tap((userData) => {
         sessionStorage.setItem("token", userData.token);
         this.currentUserData.next(userData.token);
@@ -45,12 +46,25 @@ export class AuthService {
   }
 
   refreshToken(oldToken: string): Observable<any> {
-    return this.http.post<any>(`${environment.urlHost}api/auth/refresh-token`, oldToken).pipe(
+    return this.http.post<any>(`${environment.urlHost}auth/refresh-token`, oldToken).pipe(
       tap((newTokenData) => {
         sessionStorage.setItem("token", newTokenData.token);
         this.currentUserData.next(newTokenData.token);
       }),
       map((newTokenData) => newTokenData.token),
+      catchError(this.handleError)
+    );
+  }
+
+  register(registerData: RegisterRequest): Observable<any> {
+    return this.http.post<any>(`${environment.urlHost}auth/register`, registerData).pipe(
+      tap((userData) => {
+        sessionStorage.setItem("token", userData.token);
+        this.currentUserData.next(userData.token);
+        this.currentUserLoginOn.next(true);
+        this.currentUserSubject.next(userData.username);
+      }),
+      map((userData) => userData.token),
       catchError(this.handleError)
     );
   }

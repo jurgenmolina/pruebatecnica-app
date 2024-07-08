@@ -5,16 +5,19 @@
         <h2 class="welcome-text">¡Bienvenido!</h2>
       </div>
       <form [formGroup]="loginForm">
-        <div class="custom-input-container" [class.has-error]="username?.invalid && (username?.dirty || username?.touched)">
+        <div class="custom-input-container"
+          [class.has-error]="username?.invalid && (username?.dirty || username?.touched)">
           <input type="text" formControlName="username" required placeholder="Usuario">
           <mat-icon class="input-icon">person</mat-icon>
           <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="error-message">
             El usuario es obligatorio.
           </div>
         </div>
-        
-        <div class="custom-input-container" [class.has-error]="password?.invalid && (password?.dirty || password?.touched)">
-          <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" required placeholder="Contraseña">
+
+        <div class="custom-input-container"
+          [class.has-error]="password?.invalid && (password?.dirty || password?.touched)">
+          <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" required
+            placeholder="Contraseña">
           <mat-icon class="input-icon clickable" (click)="togglePasswordVisibility()">
             {{hidePassword ? 'visibility' : 'visibility_off'}}
           </mat-icon>
@@ -24,8 +27,8 @@
         </div>
 
         <div class="login-actions">
-          <button mat-raised-button color="primary" (click)="login()" type="submit"
-            class="blue-button">Iniciar Sesión</button>
+          <button mat-raised-button color="primary" (click)="login()" type="submit" class="blue-button">Iniciar
+            Sesión</button>
         </div>
 
         <mat-error *ngIf="loginError">
@@ -33,7 +36,7 @@
         </mat-error>
       </form>
       <div class="forgot-password">
-        <a href="#!" class="link-secondary-custom">¿Olvidaste tu clave?</a>
+        <a [routerLink]="['/registro']" class="link-secondary-custom">¿No tienes una cuenta? Regístrate aquí</a>
       </div>
       <div class="login-options">
         <a href="#!" class="login-option">
@@ -46,7 +49,7 @@
       <div class="company-logo">
         <img src="../../../assets/logo/farmacia.png" alt="Company Logo">
       </div>
-      
+
       <div class="policy-link">
         <a href="#!" class="link-secondary-custom">Prueba Técnica</a>
       </div>

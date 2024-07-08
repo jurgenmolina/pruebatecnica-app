@@ -8,7 +8,7 @@ import { RecepcionProducto } from '../../model/recepcionProducto';
   providedIn: 'root'
 })
 export class RecepcionProductoService {
-  private apiUrl = `${environment.urlHost}api/recepcion-producto`;
+  private apiUrl = `${environment.urlHost}recepcion-producto`;
 
   constructor(private http: HttpClient) {}
 

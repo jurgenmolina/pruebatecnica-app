@@ -7,11 +7,11 @@
   }
   
   .dialog-title mat-icon {
-    color: #fec832; /* Color amarillo para el icono de advertencia */
+    color: #fec832; 
   }
   
   .dialog-content {
-    text-align: center; /* Centrar el texto */
+    text-align: center; 
   }
   
   .dialog-actions {

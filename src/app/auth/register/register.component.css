@@ -1,0 +1,196 @@
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #000000;
+  position: relative;
+  top: -100px;
+  z-index: 10;
+}
+
+/* Card de registro */
+.register-card {
+  width: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Sección de formulario */
+.register-content {
+  padding: 20px;
+}
+
+/* Encabezado del formulario */
+.register-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.welcome-text {
+  font-weight: bold;
+  color: #2e2d2a;
+  font-size: 24px;
+}
+
+/* Campos de formulario */
+.custom-input-container {
+  position: relative;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.custom-input-container input {
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  font-size: 16px;
+}
+
+.custom-input-container input::placeholder {
+  color: #888;
+}
+
+.custom-input-container .input-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+.custom-input-container .input-icon.clickable {
+  cursor: pointer;
+}
+
+.custom-input-container.has-error {
+  margin-bottom: 30px;
+}
+
+.error-message {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  width: 100%;
+  color: #f44336;
+  font-size: 14px;
+}
+
+/* Botón de registro */
+.register-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.register-actions button {
+  width: 100%;
+  font-size: 16px;
+  height: 40px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.blue-button {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.blue-button:hover {
+  background-color: #36373d;
+}
+
+/* Enlace para iniciar sesión */
+.login-link {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.login-link .link-secondary-custom {
+  color: #272622;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.login-link .link-secondary-custom:hover {
+  text-decoration: underline;
+  color: #272622;
+}
+
+/* Company logo */
+.company-logo {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.company-logo img {
+  width: 60px;
+  height: auto;
+}
+
+/* Policy link */
+.policy-link {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.policy-link .link-secondary-custom {
+  color: #272622;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.policy-link .link-secondary-custom:hover {
+  text-decoration: underline;
+  color: #272622;
+}
+
+.register-card {
+  width: 600px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-column {
+  width: 48%;
+}
+
+.custom-input-container {
+  position: relative;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+@media screen and (max-width: 750px) {
+  .register-container {
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .register-card {
+    width: 100%;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-column {
+    width: 100%;
+  }
+}
+

@@ -16,9 +16,18 @@
         <mat-icon>login</mat-icon>
         <span>Iniciar sesión</span>
       </button>
+      <button mat-menu-item *ngIf="!userLoginOn" (click)="navigateToRegister()">
+        <mat-icon>person_add</mat-icon>
+        <span>Registrarse</span>
+      </button>
       <ng-container *ngIf="userLoginOn">
         <button mat-menu-item disabled>
           <span>{{ userData?.username }}</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="navigateToPerfil()">
+          <mat-icon>account_circle</mat-icon>
+          <span>Perfil</span>
         </button>
         <mat-divider></mat-divider>
         <button mat-menu-item (click)="logout()">

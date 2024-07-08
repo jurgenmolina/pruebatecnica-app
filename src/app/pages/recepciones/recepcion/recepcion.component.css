@@ -17,7 +17,7 @@
   
   .recepciones-card {
     width: 100%;
-    max-width: 1400px; /* Aumentado para acomodar más columnas */
+    max-width: 1400px; 
     border-radius: 10px;
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.9);
@@ -57,13 +57,13 @@
   }
   
   .table-container {
-    overflow-x: auto; /* Permite desplazamiento horizontal en pantallas pequeñas */
+    overflow-x: auto; 
     margin-bottom: 20px;
   }
   
   table {
     width: 100%;
-    min-width: 1000px; /* Asegura que la tabla no se comprima demasiado en pantallas pequeñas */
+    min-width: 1000px; 
   }
   
   .mat-column-acciones {
@@ -134,10 +134,10 @@
     }
   
     table {
-      font-size: 12px; /* Reduce el tamaño de la fuente en dispositivos móviles */
+      font-size: 12px; 
     }
   
     th.mat-header-cell, td.mat-cell {
-      padding: 10px 8px; /* Reduce el padding en dispositivos móviles */
+      padding: 10px 8px; 
     }
   }

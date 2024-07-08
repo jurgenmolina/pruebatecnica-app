@@ -8,7 +8,7 @@ import { Producto } from '../../model/producto';
   providedIn: 'root'
 })
 export class ProductoService {
-  private apiUrl = `${environment.urlHost}api/producto`;
+  private apiUrl = `${environment.urlHost}producto`;
 
   constructor(private http: HttpClient) {}
 

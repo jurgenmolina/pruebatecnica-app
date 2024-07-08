@@ -1,0 +1,55 @@
+<div class="perfil-container">
+  <div *ngIf="user" class="profile-container">
+    <div class="profile-header">
+      <div class="profile-avatar">
+        <img src="../../../favicon.ico" alt="User Avatar">
+      </div>
+      <div class="profile-header-info">
+        <h2>{{ user.nombre }}</h2>
+        <h4>{{ user.username }}</h4>
+      </div>
+    </div>
+    <div class="profile-details-section">
+      <h4>Datos Personales:</h4>
+      <div class="profile-details">
+        <div class="profile-detail-item">
+          <mat-icon>email</mat-icon>
+          <div class="text-container">
+            <label class="detail-label">Email</label>
+            <span class="detail-value">{{ user.email }}</span>
+          </div>
+        </div>
+        <div class="profile-detail-item">
+          <mat-icon>phone</mat-icon>
+          <div class="text-container">
+            <label class="detail-label">Teléfono</label>
+            <span class="detail-value">{{ user.telefono }}</span>
+          </div>
+        </div>
+        <div class="profile-detail-item">
+          <mat-icon>description</mat-icon>
+          <div class="text-container">
+            <label class="detail-label">Tipo de Documento</label>
+            <span class="detail-value">{{ user.tipoDocumento }}</span>
+          </div>
+        </div>
+        <div class="profile-detail-item">
+          <mat-icon>credit_card</mat-icon>
+          <div class="text-container">
+            <label class="detail-label">Documento</label>
+            <span class="detail-value">{{ user.documento }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="profile-roles">
+      <h4>Permisos:</h4>
+      <ul>
+        <li *ngFor="let rol of user.roles">
+          <mat-icon>verified_user</mat-icon>
+          <span>{{ rol.nombre }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

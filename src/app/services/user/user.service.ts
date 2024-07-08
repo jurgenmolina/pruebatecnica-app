@@ -15,7 +15,7 @@ export class UserService {
   getUserData(): Observable<User> {
     const token = this.loginService.userToken;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<User>(`${environment.urlHost}api/user/token`, { headers }).pipe(
+    return this.http.get<User>(`${environment.urlHost}user/token`, { headers }).pipe(
       catchError(this.handleError)
     );
   }

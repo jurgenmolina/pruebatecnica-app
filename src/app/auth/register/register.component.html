@@ -1,0 +1,74 @@
+<div class="register-container">
+  <mat-card class="register-card">
+    <mat-card-content class="register-content">
+      <div class="register-header">
+        <h2 class="welcome-text">Registro de Usuarios</h2>
+      </div>
+      <form [formGroup]="registerForm">
+        <div class="form-row">
+          <div class="form-column">
+            <div class="custom-input-container">
+              <input type="text" formControlName="username" required placeholder="Usuario">
+              <mat-icon class="input-icon">person</mat-icon>
+            </div>
+            
+            <div class="custom-input-container">
+              <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" required placeholder="Contraseña">
+              <mat-icon class="input-icon clickable" (click)="togglePasswordVisibility()">
+                {{hidePassword ? 'visibility' : 'visibility_off'}}
+              </mat-icon>
+            </div>
+
+            <div class="custom-input-container">
+              <input type="text" formControlName="nombre" required placeholder="Nombre completo">
+              <mat-icon class="input-icon">person</mat-icon>
+            </div>
+          </div>
+          
+          <div class="form-column">
+            <div class="custom-input-container">
+              <input type="text" formControlName="tipoDocumento" required placeholder="Tipo de documento">
+              <mat-icon class="input-icon">description</mat-icon>
+            </div>
+
+            <div class="custom-input-container">
+              <input type="text" formControlName="documento" required placeholder="Número de documento">
+              <mat-icon class="input-icon">assignment_ind</mat-icon>
+            </div>
+
+            <div class="custom-input-container">
+              <input type="tel" formControlName="telefono" required placeholder="Teléfono">
+              <mat-icon class="input-icon">phone</mat-icon>
+            </div>
+          </div>
+        </div>
+
+        <div class="custom-input-container full-width">
+          <input type="email" formControlName="email" required placeholder="Email">
+          <mat-icon class="input-icon">email</mat-icon>
+        </div>
+
+        <div class="register-actions">
+          <button mat-raised-button color="primary" (click)="register()" type="submit"
+            class="blue-button">Registrarse</button>
+        </div>
+
+        <mat-error *ngIf="registerError">
+          {{ registerError }}
+        </mat-error>
+      </form>
+      
+      <div class="login-link">
+        <a [routerLink]="['/iniciar-sesion']" class="link-secondary-custom">¿Ya tienes una cuenta? Inicia sesión</a>
+      </div>
+
+      <div class="company-logo">
+        <img src="../../../assets/logo/farmacia.png" alt="Company Logo">
+      </div>
+      
+      <div class="policy-link">
+        <a href="#!" class="link-secondary-custom">Prueba Técnica</a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
